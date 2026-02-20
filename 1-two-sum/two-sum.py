@@ -1,8 +1,13 @@
 # so here we used two pointer method
-#brute force approch
+# hash map
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        for i in range(0,len(nums)-1):
-            for j in range(i+1,len(nums)):
-                if((nums[i]+nums[j])==target):
-                    return [i,j]
+        hashmap={}
+        for i in range(len(nums)):
+            remaining=target-nums[i]
+            if remaining in hashmap:
+                return [hashmap[remaining],i]
+            else:
+                hashmap[nums[i]]=i
+        return []
+      
