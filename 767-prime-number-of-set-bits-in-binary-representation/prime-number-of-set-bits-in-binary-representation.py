@@ -2,8 +2,8 @@ class Solution:
     def binary_prime(self, l:int):
         count=0
         while(l>0):
-            if(l%2==1):
-                count+=1
+            l = l & (l - 1)
+            count+=1
             l=int(l/2)
         p_list=[2, 3, 5, 7, 11, 13, 17, 19]
         if(count in p_list):
