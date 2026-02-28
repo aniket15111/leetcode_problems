@@ -1,7 +1,7 @@
 class Solution:
     def concatenatedBinary(self, n: int) -> int:
-        num=""
+        num=0
         for i in range(1,n+1):
-            binary=bin(i)[2:]
-            num+=binary
-        return int(num,2)% ((10 **9)+7)
+            digit=int( math.log2(i))+1
+            num = ((num << digit) + i) % (10**9+7)
+        return num
