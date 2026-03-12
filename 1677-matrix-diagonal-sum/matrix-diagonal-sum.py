@@ -1,16 +1,13 @@
 class Solution:
     def diagonalSum(self, mat: List[List[int]]) -> int:
-        diagonal_sum = 0
-        counter = len(mat[0]) - 1
         n = len(mat)
+        total = 0
 
-        for i in range(len(mat)):
-            if n % 2 != 0 and i == (n-1)//2 and counter == (n-1)//2:
-                diagonal_sum += mat[i][i]
-                counter -= 1
-                continue
+        for i in range(n):
+            total += mat[i][i]
+            total += mat[i][n-i-1]
 
-            diagonal_sum += mat[i][i] + mat[i][counter]
-            counter -= 1
+        if n % 2 == 1:
+            total -= mat[n//2][n//2]
 
-        return diagonal_sum
+        return total
