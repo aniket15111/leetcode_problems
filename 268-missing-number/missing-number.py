@@ -1,8 +1,6 @@
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
+        n=len(nums)
         total=sum(nums)
-        requried_sum=max(nums)*(max(nums)+1)//2
-        missing=requried_sum-total
-        if missing<=0 and 0  in nums:
-            return max(nums)+1
-        return missing
+        req=n*(n+1)//2
+        return req-total
