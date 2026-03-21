@@ -1,20 +1,17 @@
 class Solution:
     def setZeroes(self, matrix: List[List[int]]) -> None:
-        
-        zeroes=[]
-        r_len=len(matrix)
-        c_len=len(matrix[0])
-        for row in range(r_len):
-            for col in range(c_len):
+        n=len(matrix)
+        m=len(matrix[0])
+        row_mark=[0]*n
+        col_mark=[0]*m
+
+        for row in range(n):
+            for col in range(m):
                 if matrix[row][col]==0:
-                    zeroes.append([row,col])
- 
-        for r,c in zeroes:
-            for j in range(c_len):
-                matrix[r][j]=0
-            for i in range(r_len):
-                matrix[i][c] = 0
-            
+                    row_mark[row]=1
+                    col_mark[col]=1
 
-
-        
+        for row in range(n):
+            for col in range(m):
+                if row_mark[row]==1 or col_mark[col]==1:
+                    matrix[row][col]=0
