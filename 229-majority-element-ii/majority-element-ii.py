@@ -1,22 +1,37 @@
-from typing import List
-
 class Solution:
     def majorityElement(self, nums: List[int]) -> List[int]:
-        nums.sort()
+        num1 = num2 = None
+        count1 = count2 = 0
         n = len(nums)
-        result = []
 
-        count = 1
-
-        for i in range(1, n):
-            if nums[i] == nums[i - 1]:
-                count += 1
+        for num in nums:
+            if num == num1:
+                count1 += 1
+            elif num == num2:
+                count2 += 1
+            elif count1 == 0:
+                num1 = num
+                count1 = 1
+            elif count2 == 0:
+                num2 = num
+                count2 = 1
             else:
-                if count > n // 3:
-                    result.append(nums[i - 1])
-                count = 1 
+                count1 -= 1
+                count2 -= 1
 
-        if count > n // 3:
-            result.append(nums[-1])
+        count1 = count2 = 0
+        for num in nums:
+            if num == num1:
+                count1 += 1
+            elif num == num2:
+                count2 += 1
 
-        return result
+        ans = []
+        if count1 > n // 3:
+            ans.append(num1)
+        if count2 > n // 3:
+            ans.append(num2)
+
+        return ans
+                      
+            
