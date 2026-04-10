@@ -1,23 +1,32 @@
 class Solution:
-    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        n1, n2 = len(nums1), len(nums2)
-        total_len = n1 + n2
-        mid_idx = total_len // 2
-        
-        i = j = count = 0
-        curr = prev = 0
+    def findMedianSortedArrays(self, num1: List[int], num2: List[int]) -> float:
+        n1, n2 = len(num1), len(num2)
 
-        while count <= mid_idx:
-            prev = curr
-            if i < n1 and (j >= n2 or nums1[i] < nums2[j]):
-                curr = nums1[i]
-                i += 1
+        if n1 > n2:
+            return self.findMedianSortedArrays(num2, num1)
+
+        i, j = 0, n1
+        left_size = (n1 + n2 + 1) // 2
+
+        while i <= j:
+            mid1 = (i + j) // 2
+            mid2 = left_size - mid1
+
+            l1 = num1[mid1 - 1] if mid1 > 0 else float('-inf')
+            r1 = num1[mid1] if mid1 < n1 else float('inf')
+            
+            l2 = num2[mid2 - 1] if mid2 > 0 else float('-inf')
+            r2 = num2[mid2] if mid2 < n2 else float('inf')
+
+            if l1 <= r2 and l2 <= r1:
+                if (n1 + n2) % 2 == 1:
+                    return float(max(l1, l2))
+                else:
+                    return (max(l1, l2) + min(r1, r2)) / 2.0
+
+            elif l1 > r2:
+                j = mid1 - 1
             else:
-                curr = nums2[j]
-                j += 1
-            count += 1
+                i = mid1 + 1
 
-        if total_len % 2 == 0:
-            return (prev + curr) / 2.0
-        else:
-            return float(curr)
+        return 0.0
