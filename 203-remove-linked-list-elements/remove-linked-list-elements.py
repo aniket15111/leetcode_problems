@@ -8,10 +8,10 @@ class Solution:
         new_arr=ListNode(0)
         new_arr.next=head
         temp=new_arr
-        while temp.next :
+
+        while temp.next:
             if temp.next.val==val:
                 temp.next=temp.next.next
             else:
                 temp=temp.next
-
         return new_arr.next
