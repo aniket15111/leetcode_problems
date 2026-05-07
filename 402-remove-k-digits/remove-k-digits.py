@@ -7,8 +7,13 @@ class Solution:
                 k-=1
             st.append(i)
 
-        final_stack=st[:-k] if k>0 else st
-        ans=''.join(final_stack).lstrip('0')
-
-        return ans if ans else '0'
+        if k > 0:
+            st = st[:-k]
+        ans = ""
+        for char in st:
+            if not ans and char == '0':
+                continue
+            ans += char
+            
+        return ans if ans else "0"
 
