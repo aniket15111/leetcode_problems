@@ -1,21 +1,16 @@
 class Solution:
     def findThePrefixCommonArray(self, A: List[int], B: List[int]) -> List[int]:
-        set1=set()
-        set2=set()
+        seen=[0]*(len(A)+1)
         cmncnt=0
         ans=[]
         for i in range(len(A)):
-
-            if A[i]==B[i] :
+            seen[A[i]]+=1
+            if seen[A[i]]==2:
                 cmncnt+=1
-            else:
-                if A[i] in set2:
-                    cmncnt+=1
-                if B[i] in set1:
-                    cmncnt+=1
+            seen[B[i]]+=1
+            if seen[B[i]]==2:
+                cmncnt+=1
 
-            set1.add(A[i])
-            set2.add(B[i])
             ans.append(cmncnt)
 
         return ans
