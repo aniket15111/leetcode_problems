@@ -5,8 +5,6 @@ class Solution:
         cmncnt=0
         ans=[]
         for i in range(len(A)):
-            set1.add(A[i])
-            set2.add(B[i])
 
             if A[i]==B[i] :
                 cmncnt+=1
