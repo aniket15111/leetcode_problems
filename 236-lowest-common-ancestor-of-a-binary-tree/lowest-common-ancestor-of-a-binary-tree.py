@@ -8,29 +8,13 @@
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
 
-        anslist1=[]
-        anslist2=[]
-        def dfs(node,an):
-            nonlocal anslist1, anslist2
-            if not node:
-                return
-            an.append(node)
-            if node==p:
-                anslist1=an.copy()
-            if node==q:
-                anslist2=an.copy()
-            
-            dfs(node.left,an)
-            dfs(node.right,an)
-            an.pop()
+        if not root or root==p or root==q:
+            return root
 
-        dfs(root,[])
-        lca_node = None
-        for i in range(min(len(anslist1),len(anslist2))):
-            if anslist1[i]!=anslist2[i]:
-                break
-            else:
-                lca_node=anslist1[i]
+        left=self.lowestCommonAncestor(root.left,p,q)
+        right=self.lowestCommonAncestor(root.right,p,q)
 
-        return lca_node
+        if left and right:
+            return root
+        return left if left else right
                 
