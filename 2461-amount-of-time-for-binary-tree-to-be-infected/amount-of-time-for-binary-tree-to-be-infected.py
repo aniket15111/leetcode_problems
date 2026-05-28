@@ -1,5 +1,3 @@
-from collections import deque
-
 class Solution:
     def amountOfTime(self, root: Optional[TreeNode], start: int) -> int:
         if not root:
