@@ -22,5 +22,15 @@ class Solution:
         if cntleft==cntright:
             return (2**cntleft)-1
 
-        return 1+ self.countNodes(root.left)+ self.countNodes(root.right)
+        def get_tree_size(root):
+            if root is None:
+                return 0
+        
+            return 1 + get_tree_size(root.left) + get_tree_size(root.right)
+
+
+
+
+
+        return 1+ get_tree_size(root.left)+get_tree_size(root.right)
 
