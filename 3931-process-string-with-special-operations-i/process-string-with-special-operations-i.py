@@ -1,16 +1,30 @@
 class Solution:
     def processStr(self, s: str) -> str:
-        result=[]
+        result=deque()
+        is_reversed=False
         for i in s:
             if i=='#':
-                for j in range(len(result)):
-                    result.append(result[j])
+                curr=list(result)
+                if is_reversed:
+                    result.extendleft(reversed(curr))
+                else:
+                    result.extend(curr)
             elif i=='*':
                 if result:
-                    result.pop()
+                    if is_reversed:
+                        result.popleft()
+                    else:
+                        result.pop()
                 
             elif i=='%':
-                result.reverse()
+                is_reversed=not is_reversed
             else:
-                result.append(i)
-        return ''.join(result)
+                if is_reversed:
+                    result.appendleft(i)
+                else:
+                    result.append(i)
+
+        final=list(result)
+        if is_reversed:
+            final.reverse()
+        return ''.join(final)
