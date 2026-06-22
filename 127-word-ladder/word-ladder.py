@@ -5,8 +5,7 @@ class Solution:
         q=deque()
 
         set_wordlist=set(wordList)
-        if endWord not in set_wordlist:
-            return 0
+
         q.append((beginWord,1))
 
         while q:
