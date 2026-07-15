@@ -19,7 +19,7 @@ class Solution:
                 
             lowest_ans += lowest_add
 
-            if lowest_ans % 10 == 0 or lowest_ans % 10 < lowest_add % 10 or str(lowest_ans)[0] > str(10 - len(str(lowest_add))):
+            if lowest_ans % 10 == 0 or str(lowest_ans)[0] > str(10 - len(str(lowest_add))):
                 if len(str(lowest_add)) == 9:
                     break
                     
